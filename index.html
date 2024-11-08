@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: #f8fafc;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(at 10% 90%, rgb(219, 234, 254) 0, transparent 60%),
+                radial-gradient(at 90% 10%, rgb(224, 242, 254) 0, transparent 60%);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);  /* Darker blue by default */
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .header:hover {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);  /* Lighter on hover */
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
+                linear-gradient(90deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
+                linear-gradient(0deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
+                radial-gradient(circle at 50% 50%, transparent 30%, #fff 30%, #fff 35%, transparent 35%);
+            background-size: 30px 30px;
+            animation: bgMove 3s linear infinite;
+        }
+
+        .header:hover::before {
+            opacity: 0.15;  /* Slightly more visible pattern on hover */
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 30px; }
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, 
+                    rgba(255,255,255,0.05) 0px, 
+                    rgba(255,255,255,0.05) 2px,
+                    transparent 2px, 
+                    transparent 4px),
+                repeating-linear-gradient(-45deg,
+                    rgba(255,255,255,0.05) 0px,
+                    rgba(255,255,255,0.05) 2px,
+                    transparent 2px,
+                    transparent 4px);
+            filter: blur(0.5px);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            width: 100%;
+            max-width: none;
+            padding: 0 20px;
+        }
+        
+        .tile-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .tile {
+            flex: 1;
+            background: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                        0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tile:hover::before {
+            opacity: 0.25;
+        }
+
+        .tile:nth-child(1)::before {
+            background: 
+                linear-gradient(45deg, transparent 48%, #c2410c 48%, #c2410c 52%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, #c2410c 48%, #c2410c 52%, transparent 52%);
+            background-size: 20px 20px;
+            animation: patternMove1 3s linear infinite;
+        }
+
+        .tile:nth-child(2)::before {
+            background: 
+                radial-gradient(circle at 50% 50%, #047857 2px, transparent 2px);
+            background-size: 20px 20px;
+            animation: patternMove2 3s linear infinite;
+        }
+
+        .tile:nth-child(3)::before {
+            background: 
+                linear-gradient(45deg, transparent 48%, #5b21b6 48%, #5b21b6 52%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, #5b21b6 48%, #5b21b6 52%, transparent 52%);
+            background-size: 20px 20px;
+            animation: patternMove1 3s linear infinite;
+        }
+
+        @keyframes patternMove1 {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        @keyframes patternMove2 {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
+        }
+
+        @keyframes patternMove3 {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        .tile-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tile h2 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .tile p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .tile:nth-child(1) .icon {
+            color: #c2410c;
+        }
+
+        .tile:nth-child(2) .icon {
+            color: #047857;
+        }
+
+        .tile:nth-child(3) .icon {
+            color: #5b21b6;
+        }
+
+        @media (max-width: 768px) {
+            .tile-container {
+                flex-direction: column;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 30px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>GPU in Browsers</h1>
+            <p class="header-subtitle">Unleashing hardware-accelerated computing power in modern web applications</p>
+        </div>
+    </div>
+    
+    <div class="tile-container">
+        <div class="tile">
+            <div class="tile-content">
+                <div class="icon">🏪</div>
+                <h2>GEMM Store</h2>
+                <p>Explore our collection of GPU-accelerated matrix multiplication implementations</p>
+            </div>
+        </div>
+        <div class="tile">
+            <div class="tile-content">
+                <div class="icon">⚡</div>
+                <h2>WebGPU</h2>
+                <p>Learn about the next-generation graphics and compute API for the Web</p>
+            </div>
+        </div>
+        <div class="tile">
+            <div class="tile-content">
+                <div class="icon">📚</div>
+                <h2>Blogs</h2>
+                <p>Read the latest insights and tutorials about GPU programming in browsers</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
